@@ -1,6 +1,6 @@
 # Cutshort frontend assignment Jan 2022
 
-This project created as for the frontend assignment task for Cutshort.
+This project created for the frontend assignment task for Cutshort.
 
 ## Available Scripts
 
