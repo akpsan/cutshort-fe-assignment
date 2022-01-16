@@ -6,9 +6,13 @@ import { WizardContext } from '../Wizard/components/wizard'
 import 'src/styles/stage.scss'
 
 export default function Stage1() {
-  const [givenName, setGivenName] = useState('')
-  const [displayName, setDisplayName] = useState('')
   const context = useContext(WizardContext)
+  const [givenName, setGivenName] = useState(
+    context.data.givenName ? context.data.givenName : ''
+  )
+  const [displayName, setDisplayName] = useState(
+    context.data.displayName ? context.data.displayName : ''
+  )
 
   const changeHandlerGivenName = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -21,18 +25,22 @@ export default function Stage1() {
   }
 
   useEffect(() => {
-    context.setData({
-      ...context.data,
-      givenName,
-    })
-  }, [givenName])
+    if (context.data.givenName !== givenName) {
+      context.setData({
+        ...context.data,
+        givenName,
+      })
+    }
+  }, [givenName, context])
 
   useEffect(() => {
-    context.setData({
-      ...context.data,
-      displayName,
-    })
-  }, [displayName])
+    if (context.data.displayName !== displayName) {
+      context.setData({
+        ...context.data,
+        displayName,
+      })
+    }
+  }, [displayName, context])
 
   return (
     <div>

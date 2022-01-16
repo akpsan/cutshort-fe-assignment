@@ -27,8 +27,6 @@ export default function Stage4() {
         <i className='fas fa-check-circle fa-4x success-circle'></i>
       </div>
       <Header
-        //@ts-expect-error TypeScript will cry. We don't want to hard code any types to data object since it
-        // is designed to contain any kind of data.
         heading={`Congratulations, ${context.data.displayName}`}
         description={`You have completed onboarding, you can start using Eden!`}
       />

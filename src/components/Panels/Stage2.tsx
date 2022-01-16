@@ -6,9 +6,13 @@ import { WizardContext } from '../Wizard/components/wizard'
 import 'src/styles/stage.scss'
 
 export default function Stage2() {
-  const [workspace, setWorkspace] = useState('')
-  const [workspaceURL, setWorkspaceURL] = useState('')
   const context = useContext(WizardContext)
+  const [workspace, setWorkspace] = useState(
+    context.data.workspace ? context.data.workspace : ''
+  )
+  const [workspaceURL, setWorkspaceURL] = useState(
+    context.data.workspaceURL ? context.data.workspaceURL : ''
+  )
 
   const changeHandlerWorkspace = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -23,18 +27,22 @@ export default function Stage2() {
   }
 
   useEffect(() => {
-    context.setData({
-      ...context.data,
-      workspace,
-    })
-  }, [workspace])
+    if (context.data.workspace !== workspace) {
+      context.setData({
+        ...context.data,
+        workspace,
+      })
+    }
+  }, [workspace, context])
 
   useEffect(() => {
-    context.setData({
-      ...context.data,
-      workspaceURL,
-    })
-  }, [workspaceURL])
+    if (context.data.workspaceURL !== workspaceURL) {
+      context.setData({
+        ...context.data,
+        workspaceURL,
+      })
+    }
+  }, [workspaceURL, context])
 
   return (
     <div>

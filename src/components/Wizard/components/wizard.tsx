@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  MutableRefObject,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { createContext, MutableRefObject, useRef, useState } from 'react'
 
 // Types
 interface WizardProps {
@@ -17,7 +11,7 @@ interface IWizardContext {
   next: () => void
   previous: () => void
   jump: (index: number) => void
-  data: Object
+  data: any
   setData: (data: Object) => void
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './App.css'
 import BrandLogo from './components/BrandLogo'
 import Stage1 from './components/Panels/Stage1'
