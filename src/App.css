@@ -54,3 +54,21 @@ table {
 html {
 	font-family: 'Montserrat', sans-serif;
 }
+
+@media all and (max-width: 768px) { 
+	html {
+		font-size: 14px
+	}
+}
+
+@media all and (max-width: 500px) { 
+	html {
+		font-size: 12px
+	}
+}
+
+@media all and (max-width: 400px) { 
+	html {
+		font-size: 10px
+	}
+}
