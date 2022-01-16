@@ -1,5 +1,7 @@
 # Cutshort frontend assignment Jan 2022
 
+Temporary deployment until docker config is done -> https://dreamy-panini-f780d6.netlify.app/.
+
 This project created for the frontend assignment task for Cutshort.
 
 ## Available Scripts
