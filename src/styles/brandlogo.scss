@@ -7,5 +7,9 @@
   line-height: 4rem;
   .logo-container {
     display: flex;
+    .align-logo {
+      display: flex;
+      align-items: center;
+    }
   }
 }

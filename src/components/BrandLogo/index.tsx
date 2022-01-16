@@ -6,7 +6,7 @@ export default function BrandLogo() {
   return (
     <div className='logo-wrapper'>
       <div className='logo-container'>
-        <div>
+        <div className='align-logo'>
           <img src={Icon} alt='Eden' />
         </div>
         Eden
