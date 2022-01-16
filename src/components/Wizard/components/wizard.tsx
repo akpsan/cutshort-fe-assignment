@@ -1,4 +1,10 @@
-import React, { createContext, MutableRefObject, useRef, useState } from 'react'
+import React, {
+  createContext,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 // Types
 interface WizardProps {
@@ -11,7 +17,8 @@ interface IWizardContext {
   next: () => void
   previous: () => void
   jump: (index: number) => void
-  data: any // We can use this to store almost any data that is needed to be accessed on any stage. Since we want flexibility it is better to not to declare a type
+  data: Object
+  setData: (data: Object) => void
 }
 
 interface IChidrenMap {
@@ -43,12 +50,14 @@ const inititalValue = {
   previous: () => null,
   jump: () => null,
   data: {},
+  setData: () => null,
 }
 
 export const WizardContext = createContext<IWizardContext>(inititalValue)
 
 export default function Wizard(props: WizardProps) {
   const [currentStage, setStage] = useState(0)
+  const [data, setData] = useState({}) // we can use this store any common data required in all screens
 
   // Using refs to store these values since we dont want to recalculate
   // them on each render. Also we aren't dynamically adding or removing
@@ -76,18 +85,28 @@ export default function Wizard(props: WizardProps) {
     0 <= index && index <= maxIndex.current && setStage(index)
   }
 
+  const setDataWrapper = (data: Object) => {
+    setData(data)
+  }
+
   const contextValue = {
     currentStage,
     maxIndex: maxIndex.current,
     next,
     previous,
     jump,
-    data: {},
+    data,
+    setData: setDataWrapper,
   }
 
+  let pane = React.cloneElement(
+    childrenMap.current[currentStage] as React.ReactElement<any>,
+    {
+      key: `step-${currentStage}`,
+    }
+  )
+
   return (
-    <WizardContext.Provider value={contextValue}>
-      {childrenMap.current[currentStage]}
-    </WizardContext.Provider>
+    <WizardContext.Provider value={contextValue}>{pane}</WizardContext.Provider>
   )
 }

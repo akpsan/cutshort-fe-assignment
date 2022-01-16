@@ -1,13 +1,39 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Header } from '../Header'
 import { WizardContext } from '../Wizard/components/wizard'
 
 import 'src/styles/stage.scss'
-import { childProps } from '../../App'
 
-export default function Stage1(props: childProps) {
+export default function Stage1() {
+  const [givenName, setGivenName] = useState('')
+  const [displayName, setDisplayName] = useState('')
   const context = useContext(WizardContext)
+
+  const changeHandlerGivenName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setGivenName(e.target.value)
+  }
+
+  const changeHandlerDisplayName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setDisplayName(e.target.value)
+  }
+
+  useEffect(() => {
+    context.setData({
+      ...context.data,
+      givenName,
+    })
+  }, [givenName])
+
+  useEffect(() => {
+    context.setData({
+      ...context.data,
+      displayName,
+    })
+  }, [displayName])
+
   return (
     <div>
       <Header
@@ -22,6 +48,8 @@ export default function Stage1(props: childProps) {
             className='stage-input'
             id='full-name'
             placeholder='Steve Jobs'
+            value={givenName}
+            onChange={changeHandlerGivenName}
           />
         </div>
         <div className='text-input-with-label'>
@@ -31,6 +59,8 @@ export default function Stage1(props: childProps) {
             className='stage-input'
             id='display-name'
             placeholder='Steve'
+            value={displayName}
+            onChange={changeHandlerDisplayName}
           />
         </div>
         <button

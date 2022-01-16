@@ -1,13 +1,41 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Header } from '../Header'
 import { WizardContext } from '../Wizard/components/wizard'
 
 import 'src/styles/stage.scss'
-import { childProps } from '../../App'
 
-export default function Stage2(props: childProps) {
+export default function Stage2() {
+  const [workspace, setWorkspace] = useState('')
+  const [workspaceURL, setWorkspaceURL] = useState('')
   const context = useContext(WizardContext)
+
+  const changeHandlerWorkspace = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setWorkspace(e.target.value)
+  }
+
+  const changeHandlerWorkspaceURL = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    e.preventDefault()
+    setWorkspaceURL(e.target.value)
+  }
+
+  useEffect(() => {
+    context.setData({
+      ...context.data,
+      workspace,
+    })
+  }, [workspace])
+
+  useEffect(() => {
+    context.setData({
+      ...context.data,
+      workspaceURL,
+    })
+  }, [workspaceURL])
+
   return (
     <div>
       <Header
@@ -22,6 +50,8 @@ export default function Stage2(props: childProps) {
             className='stage-input'
             id='workspace-name'
             placeholder='Eden'
+            value={workspace}
+            onChange={changeHandlerWorkspace}
           />
         </div>
         <div className='text-input-with-label'>
@@ -42,6 +72,8 @@ export default function Stage2(props: childProps) {
               className='stage-input threefourth'
               id='workspace-url'
               placeholder='Example'
+              value={workspaceURL}
+              onChange={changeHandlerWorkspaceURL}
             />
           </div>
         </div>

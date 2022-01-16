@@ -5,11 +5,26 @@ import { Header } from '../Header'
 import { WizardContext } from '../Wizard/components/wizard'
 
 import 'src/styles/stage.scss'
-import { childProps } from '../../App'
 
-export default function Stage3(props: childProps) {
-  const { mode, setMode } = props
+export default function Stage3(props: any) {
+  const [mode, setMode] = useState('single')
   const context = useContext(WizardContext)
+
+  useEffect(() => {
+    // set mode initially
+    context.setData({
+      ...context.data,
+      mode: mode,
+    })
+  }, [])
+
+  useEffect(() => {
+    // set mode on updates
+    context.setData({
+      ...context.data,
+      mode: mode,
+    })
+  }, [mode])
 
   return (
     <div>
