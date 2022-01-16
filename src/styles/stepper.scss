@@ -1,0 +1,50 @@
+.stepper-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: -5px 0 2.5rem;
+
+  .stepper-items {
+    display: flex;
+    position: relative;
+    .stepper-stage {
+      display: flex;
+      justify-content: center;
+      margin: 2rem;
+      height: 2.4rem;
+      width: 2.4rem;
+      border: 1px solid #eaeef5;
+      border-radius: 50%;
+      line-height: 2.65rem;
+      cursor: pointer;
+      background-color: white;
+      &.active {
+        color: white;
+        background-color: #664de5;
+        border: 1px solid #664de5;
+        &::after {
+          background-color: #664de5;
+        }
+      }
+      &::after {
+        z-index: -1;
+        display: block;
+        position: absolute;
+        content: '';
+        height: 1px;
+        width: 25%;
+        top: 50%;
+        background-color: #eaeef5;
+      }
+      &:last-child::after,
+      &:first-child::after {
+        width: 12.5%;
+      }
+      &:first-child::after {
+        left: 12.5%;
+      }
+      &:last-child::after {
+        right: 12.5%;
+      }
+    }
+  }
+}

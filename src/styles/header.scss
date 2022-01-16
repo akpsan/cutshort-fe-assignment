@@ -1,0 +1,16 @@
+.wizard-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  .wizard-header-main-text {
+    font-size: 2rem;
+    line-height: 4.5rem;
+    font-weight: 500;
+  }
+
+  .wizard-header-subtext {
+    color: #5c6984;
+  }
+}

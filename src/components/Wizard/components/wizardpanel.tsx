@@ -1,25 +1,17 @@
-import React, { useContext } from 'react'
-import { WizardContext } from './wizard'
+import React from 'react'
+import { Stepper } from './stepper'
 
-const Header = ({ heading }: { heading: string }) => {
-  return <div>{heading}</div>
+import 'src/styles/wizardpanel.scss'
+
+interface IWizardPanelProps {
+  children?: React.ReactNode
 }
 
-const Stepper = () => {
-  const context = useContext(WizardContext)
+export default function WizardPanel(props: IWizardPanelProps) {
   return (
-    <>
-      <div onClick={() => context.next()}>Next</div>
-      <div onClick={() => context.previous()}>Prev</div>
-    </>
-  )
-}
-
-export default function Wizardpanel({ heading }: { heading: string }) {
-  return (
-    <div style={{ margin: '20px' }}>
-      <Header heading={heading} />
+    <div className='wizard-panel'>
       <Stepper />
+      {props.children}
     </div>
   )
 }
